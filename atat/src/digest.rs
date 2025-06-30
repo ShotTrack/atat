@@ -359,11 +359,14 @@ pub mod parser {
 
     /// Matches a full AT echo. Eg `AT+USORD=3,16\r\n`
     pub fn echo(buf: &[u8]) -> IResult<&[u8], &[u8]> {
+        /*
         if buf.len() < 2 {
             return Ok((buf, &[]));
         }
 
         recognize(nom::bytes::complete::take_until("\r\n"))(buf)
+        */
+        Ok((buf, &[]))
     }
 
     pub fn take_until_including<T, Input, Error: ParseError<Input>>(
