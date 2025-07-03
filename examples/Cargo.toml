@@ -49,7 +49,7 @@ portable-atomic = "1.6.0"
 [dependencies.embassy-executor]
 version = "0.7"
 git = "https://github.com/embassy-rs/embassy/"
-rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
+# rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
 features = [
     "defmt",
     "arch-cortex-m",
@@ -60,12 +60,12 @@ optional = true
 [dependencies.embassy-time]
 version = "0.4"
 git = "https://github.com/embassy-rs/embassy/"
-rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
+# rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
 
 [dependencies.embassy-rp]
 version = "0.4"
 git = "https://github.com/embassy-rs/embassy/"
-rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
+# rev = "b528ed06e3025e0803e8fd6dc53ac968df9f49bc"
 features = [
     "rp2040",
     "unstable-pac",
