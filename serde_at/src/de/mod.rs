@@ -728,14 +728,12 @@ impl fmt::Display for Error {
     }
 }
 
-fn trim_ascii_whitespace(x: &[u8]) -> &[u8] {
-    x.iter().position(|x| !x.is_ascii_whitespace()).map_or_else(
-        || &x[0..0],
-        |from| {
-            let to = x.iter().rposition(|x| !x.is_ascii_whitespace()).unwrap();
-            &x[from..=to]
-        },
-    )
+fn trim_ascii_whitespace(input: &[u8]) -> &[u8] {
+    if input.ends_with(b"\r\n") {
+        &input[..input.len() - 2]
+    } else {
+        input
+    }
 }
 
 /// Deserializes an instance of type `T` from bytes of AT Response text
