@@ -67,11 +67,11 @@ impl<'de, const N: usize, const S: usize> de::Visitor<'de> for LengthDelimitedVi
                     start += 1; // Extra +1 to remove first quote (")
                     end += 1; // Move end by 1 to compensate for the quote.
                 }
-                Ok(LengthDelimited {
-                    len,
-                    bytes: Bytes::from_slice(&v[start..end])
-                        .map_err(|_| de::Error::custom("incorrect slice size"))?,
-                })
+                let mut bytes = Bytes::new();
+                bytes
+                    .extend_from_slice(&v[start..end])
+                    .map_err(|_| de::Error::custom("incorrect slice size"))?;
+                Ok(LengthDelimited { len, bytes })
             })
     }
 }
