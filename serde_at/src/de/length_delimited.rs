@@ -63,10 +63,10 @@ impl<'de, const N: usize, const S: usize> de::Visitor<'de> for LengthDelimitedVi
                 let mut end = start + len;
                 // Check if payload is surrounded by double quotes not included in len.
                 let slice_len = v.len();
-                if slice_len >= (end + 2) && (v[start] == b'"' && v[end + 1] == b'"') {
-                    start += 1; // Extra +1 to remove first quote (")
-                    end += 1; // Move end by 1 to compensate for the quote.
-                }
+                // if slice_len >= (end + 2) && (v[start] == b'"' && v[end + 1] == b'"') {
+                //     start += 1; // Extra +1 to remove first quote (")
+                //     end += 1; // Move end by 1 to compensate for the quote.
+                // }
                 let mut bytes = Bytes::new();
                 bytes
                     .extend_from_slice(&v[start..end])
