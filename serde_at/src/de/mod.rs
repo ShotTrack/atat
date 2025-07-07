@@ -737,6 +737,18 @@ fn trim_ascii_whitespace(input: &[u8]) -> &[u8] {
 }
 
 /// Deserializes an instance of type `T` from bytes of AT Response text
+/// without removing any trailing whitespace.
+pub fn from_slice_raw<'a, T>(v: &'a [u8]) -> Result<T>
+where
+    T: de::Deserialize<'a>,
+{
+    let mut de = Deserializer::new(v);
+    let value = de::Deserialize::deserialize(&mut de)?;
+    de.end()?;
+    Ok(value)
+}
+
+/// Deserializes an instance of type `T` from bytes of AT Response text
 pub fn from_slice<'a, T>(v: &'a [u8]) -> Result<T>
 where
     T: de::Deserialize<'a>,
